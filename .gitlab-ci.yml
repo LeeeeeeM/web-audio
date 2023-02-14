@@ -1,0 +1,27 @@
+stages:
+  - install_build
+  - manual_publish_landing
+  # - publish_npm_package
+
+# 缓存目录
+cache: &node_modules_cache
+  key: ${CI_BUILD_REF_NAME}
+  paths:
+    - node_modules/
+  policy: pull-push
+
+# build
+install_build:
+  stage: install_build
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  script:
+    - yarn install
+
+
+jssdk_publish:
+  stage: manual_publish_landing
+  rules:
+    - when: manual
+  script:
+    - yarn upload
