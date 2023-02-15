@@ -15,7 +15,7 @@ let sourceBuffer: AudioBuffer | null = null;
 let offset = 0;
 let startOffset = 0;
 
-const getMusiceBuffer = async (url = 'http://127.0.0.1:9997/jiumengyichang.mp3') => {
+const getMusiceBuffer = async (url = 'https://scms-test-cdaa.obs.cn-east-3.myhuaweicloud.com/music_web/jiumengyichang.mp3') => {
     if (sourceBuffer) {
         return sourceBuffer;
     }
@@ -61,23 +61,21 @@ startBtn?.addEventListener('click', async () => {
 });
 
 pauseBtn?.addEventListener('click', () => {
-    visualizer.pause();
     startBtn.disabled = false;
     stopBtn.disabled = false;
     pauseBtn.disabled = true;
+    visualizer.pause(source);
     source.stop(0);
-    source.disconnect();
     // 设置下次继续的位置
     offset = offset + audioCtx.currentTime - startOffset;
 });
 
 stopBtn?.addEventListener('click', () => {
-    visualizer.pause();
     startBtn.disabled = false;
     stopBtn.disabled = true;
     pauseBtn.disabled = true;
+    visualizer.pause(source);
     source.stop(0);
-    source.disconnect();
     // 设置下次继续的位置
     offset = 0; 
 });

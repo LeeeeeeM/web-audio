@@ -29,8 +29,10 @@ export default class Visualizer {
 
   connect(source: AudioBufferSourceNode) {
     const audioContext = this.audioContext;
+    console.log(audioContext);
     // const distortion = audioContext.createWaveShaper();
-    // const gainNode = audioContext.createGain();
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = 0.2;
     // const biquadFilter = audioContext.createBiquadFilter();
     // const convolver = audioContext.createConvolver();
   
@@ -40,9 +42,15 @@ export default class Visualizer {
     // distortion.connect(biquadFilter);
     // biquadFilter.connect(gainNode);
     // convolver.connect(gainNode);
-    // gainNode.connect(this.analyser);
     // echoDelay.placeBetween(gainNode, analyser);
-    this.analyser.connect(audioContext.destination);
+    this.analyser.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+  }
+
+  disconnect(source: AudioBufferSourceNode) {
+    source.disconnect();
+    // 必须断开analyser，否则后续链接的gainNode也会继续放大声音
+    this.analyser.disconnect();
   }
 
   draw() {
@@ -55,9 +63,10 @@ export default class Visualizer {
       this.draw();
     });
   }
-  pause() {
+  pause(source: AudioBufferSourceNode) {
     this.paused = true;
     cancelAnimationFrame(this.frame);
+    this.disconnect(source);
   }
   start(source: AudioBufferSourceNode) {
     this.paused = false;
