@@ -8,6 +8,4 @@
 
 ### yarn build
 
-## 打包
-
-### yarn zip
+[线上展示](https://leeeeeem.github.io/web-audio/)
