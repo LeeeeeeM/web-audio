@@ -13,6 +13,12 @@
   <body height="100%">
     <div id="root" style="height: 100%">
         <canvas id="canvas" width="640" height="160"></canvas>
+        <div class="radio-group">
+          <input type="radio" id="time" checked name="wave"/>
+          <label for="time">波形</label>
+          <input type="radio" id="frequency" name="wave"/>
+          <label for="frequency">频域</label>
+        </div>
         <div class="btn-group">
             <button id="start">start</button>
             <button id="pause">pause</button>
