@@ -6,6 +6,7 @@ import { version } from './package.json';
 export default defineConfig({
   plugins: [],
   // 打包配置
+  base: '/web-audio/',
   build: {
     // lib: {
     //   formats: ['umd'],
@@ -14,7 +15,7 @@ export default defineConfig({
     //   fileName: (format: string) => `web-audio.${format}.[hash].js`, // 打包后名称
     // },
     emptyOutDir: true,
-    outDir: 'lib',
+    // outDir: 'lib',
     sourcemap: true, // 输出sourcemap
     rollupOptions: {
       plugins: [
