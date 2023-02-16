@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh" height="100%">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>web audio</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script>
+    <script>
+      new window.VConsole();
+    </script>
+    <script type="module" crossorigin src="/web-audio/assets/index-5e675bf6.js"></script>
+    <link rel="stylesheet" href="/web-audio/assets/index-b4694919.css">
+  </head>
+
+  <body height="100%">
+    <div id="root" style="height: 100%">
+        <canvas id="canvas" width="640" height="160"></canvas>
+        <div class="radio-group">
+          <input type="radio" id="time" checked name="wave"/>
+          <label for="time">波形</label>
+          <input type="radio" id="frequency" name="wave"/>
+          <label for="frequency">频域</label>
+        </div>
+        <div class="btn-group">
+            <button id="start">start</button>
+            <button id="pause">pause</button>
+            <button id="stop">stop</button>
+        </div>
+    </div>
+
+    
+  </body>
+</html>
